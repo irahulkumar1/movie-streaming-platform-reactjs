@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 
 const AppContext = React.createContext();
-const api_url =
-  "https://api.themoviedb.org/3/movie/popular?api_key=7c5dd8f6632df5fc84307bdbbcf0cf67";
+const api_url = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}`;
+const api_search = `https://api.themoviedb.org/3/search/company?api_key=${process.env.REACT_APP_API_KEY}&page=1`;
 
 const AppProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [movie, setMovie] = useState([]);
   const [isError, setIsError] = useState({ show: "false", msg: "" });
+  const [query, setQuery] = useState("766507");
 
   const getMovies = async (url) => {
     try {
@@ -17,7 +18,7 @@ const AppProvider = ({ children }) => {
       if (data.results.length > 0) {
         setIsLoading(false);
         setMovie(data.results);
-        console.log(data, "setasdfasdf");
+        // console.log(data, "setasdfasdf");
       } else {
         setIsError({
           show: true,
@@ -34,6 +35,18 @@ const AppProvider = ({ children }) => {
     getMovies(api_url);
   }, []);
 
+  const searchMovie = async (e) => {
+    e.preventDefault("searching");
+    try {
+      const url = `https://api.themoviedb.org/3/search/company?api_key==${process.env.REACT_APP_API_KEY}&query=${query}`;
+      const res = await fetch(url);
+      const data = await res.json();
+      console.log(data);
+      setMovie(data.results);
+    } catch (e) {
+      console.log(e);
+    }
+  };
   return (
     <AppContext.Provider value={{ isLoading, movie, isError }}>
       {children}
