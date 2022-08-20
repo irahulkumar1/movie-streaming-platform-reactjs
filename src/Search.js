@@ -4,8 +4,8 @@ import { React, useState } from "react";
 const API_SEARCH = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&query`;
 
 const Search = () => {
-  const [movies, setMovies] = useState([]);
-  const [query, setQuery] = useState("prey");
+  const [movie, setMovie] = useState([]);
+  const [query, setQuery] = useState("");
 
   const searchMovie = async (e) => {
     e.preventDefault();
@@ -14,8 +14,8 @@ const Search = () => {
       const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=${query}`;
       const res = await fetch(url);
       const data = await res.json();
-      console.log(data, "data testing");
-      setMovies(data.results);
+      console.log(data.results[0], "data testing");
+      setMovie(data.results);
     } catch (e) {
       console.log(e);
     }
