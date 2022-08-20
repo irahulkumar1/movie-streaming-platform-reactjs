@@ -27,15 +27,17 @@ const Search = () => {
   return (
     <>
       <section className="search-section">
-        <h2>Search Your Favourite Movie</h2>
+        {/* <h2>Search Your Favourite Movie</h2> */}
         <form action="#" onSubmit={searchMovie}>
           <div>
+            <i className="bi bi-search"></i>
             <input
               type="text"
               placeholder="search here"
               value={query}
               onChange={changeHandler}
             />
+            <i class="fa-solid fa-magnifying-glass"></i>
           </div>
         </form>
       </section>

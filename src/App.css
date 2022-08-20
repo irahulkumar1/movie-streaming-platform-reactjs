@@ -57,7 +57,7 @@ img {
   grid-template-columns: repeat(4, 1fr);
 }
 
-.card {
+.cardd {
   width: 20rem;
   max-width: 15rem;
   min-height: 15rem;
@@ -77,8 +77,8 @@ img {
 }
 
 input {
-  width: 30rem;
-  border-radius: 100px;
+  width: 120rem;
+  border-radius: 10px;
   border: none;
   border: 1px solid var(--border-clr);
   padding: 1rem 2rem;

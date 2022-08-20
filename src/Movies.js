@@ -13,7 +13,7 @@ const Movies = () => {
           const { id, original_title, backdrop_path, vote_average } = curMovie;
           return (
             <NavLink to={`movie/${id}`} key={id}>
-              <div className="card">
+              <div className="cardd">
                 <div className="card-info">
                   <img src={API_img + backdrop_path} alt={id} />
                   <h2>
